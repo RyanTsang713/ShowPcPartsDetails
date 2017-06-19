@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pers.ryan.showpartsdetails.domain.Item" table="items">
+		<id name="id" column="item_id">
+			<generator class="assigned"></generator>
+		</id>
+		<property name="name" column="item_name"></property>
+		<property name="category" column="item_category">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">pers.ryan.showpartsdetails.domain.Category</param>
+				<param name="type">12</param>
+			</type>
+		</property>
+		<property name="imgUrl" column="item_imgurl"></property>
+	</class>
+</hibernate-mapping>
