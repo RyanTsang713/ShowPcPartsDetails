@@ -14,6 +14,7 @@ import pers.ryan.showpartsdetails.service.ItemService;
 public class ItemAction extends ActionSupport implements ModelDriven<Item> {
 
 	private Item item = new Item();
+	List<Item> items;
 	private ItemService itemService;
 	public void setItemService(ItemService itemService) {
 		this.itemService = itemService;
@@ -31,18 +32,26 @@ public class ItemAction extends ActionSupport implements ModelDriven<Item> {
 	
 	public String findItem(){
 		item = itemService.findItemById(partsId);
-		Map request = (Map) ActionContext.getContext().get("request");
-		List<Item> items = new ArrayList<Item>();
 		items.add(item);
-		request.put("items", items);
+//		Map request = (Map) ActionContext.getContext().get("request");
+//		request.put("items", items);
 		return SUCCESS;
 	}
 	
 	public String findItems(){
-		List<Item> items = itemService.findItemsByIds(partsId);
-		Map request = (Map) ActionContext.getContext().get("request");
-		request.put("items", items);
+		items = itemService.findItemsByIds(partsId);
+		//Map request = (Map) ActionContext.getContext().get("request");
+		//request.put("items", items);
 		return SUCCESS;
 	}
 
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+
+	
 }
